@@ -1,0 +1,87 @@
+---
+---
+<section class="walkthrough">
+  <div class="inner">
+    <h2>What gets generated</h2>
+    <p class="intro">Running <code>structor init</code> writes a harness into your repository. It contains:</p>
+    <ul>
+      <li>Canonical policy files (<code>ai/*</code>) that define how agents should interact with this repo</li>
+      <li>Thin Codex and Claude Code entrypoints with context scoped to the repo</li>
+      <li>Cross-repo contract files for products that span multiple repositories</li>
+      <li>Task templates with consistent shape and expected outputs</li>
+      <li>A routing hub (<code>ai/HUB.md</code>) that lets an agent started in any repo discover the whole product</li>
+      <li>Read-only review views for auditing agent interactions</li>
+      <li>Validation scripts that exit non-zero on drift</li>
+    </ul>
+    <p class="outro">The result is plain files in your repo with a stable shape and a way to detect drift.</p>
+  </div>
+</section>
+
+<style>
+  .walkthrough {
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 1.5rem;
+  }
+
+  .inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-strong);
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  li {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: 0.875em;
+    background: var(--code-bg);
+    color: var(--text-strong);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  .outro {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin: 0;
+  }
+</style>

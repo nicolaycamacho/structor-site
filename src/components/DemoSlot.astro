@@ -1,0 +1,76 @@
+---
+---
+<section class="demo-section" id="demo">
+  <div class="inner">
+    <h2>See it on a real multi-repo project</h2>
+    <p class="demo-desc">Watch Structor generate a harness across separate frontend and backend repos, then watch an agent started in one repo discover the whole product through the harness.</p>
+    <div class="demo-frame">
+      <!-- LOOM EMBED: replace the .demo-placeholder div below with your Loom
+      <iframe>. Keep it inside .demo-frame so the 16:9 ratio is preserved. -->
+      <div class="demo-placeholder">
+        <span class="placeholder-main">Demo video coming soon</span>
+        <span class="placeholder-sub">(Loom embed goes here)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .demo-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-strong);
+    margin-bottom: 0.75rem;
+  }
+
+  .demo-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin-bottom: 1.75rem;
+    max-width: 62ch;
+  }
+
+  .demo-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface-alt);
+  }
+
+  .demo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 2px dashed var(--border-strong);
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+
+  .placeholder-main {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .placeholder-sub {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+</style>

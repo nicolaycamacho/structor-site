@@ -1,0 +1,64 @@
+---
+---
+<section class="wedge">
+  <div class="inner">
+    <h2>Enforcement, not just prompts</h2>
+    <div class="points">
+      <div class="point">
+        <h3>Drift-failing validators</h3>
+        <p>Overlay-drift, contract-manifest, task-shape, and hook-guardrail checks that exit non-zero when policy drifts.</p>
+      </div>
+      <div class="point">
+        <h3>Self-verifying generated code</h3>
+        <p>Every generated validator carries a hash of its own rendered source; the harness refuses to run a check that's been hand-edited rather than silently trusting drifted policy.</p>
+      </div>
+      <div class="point">
+        <h3>Hard safety boundaries</h3>
+        <p>Symlink-resolving path safety, traversal rejection, and injection-as-data rendering, all backed by adversarial tests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wedge {
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 1.5rem;
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-strong);
+    margin-bottom: 2.5rem;
+  }
+
+  .points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .point h3 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-strong);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .point p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin: 0;
+  }
+</style>

@@ -1,27 +1,77 @@
 ---
+const gaps = [
+  'Pre-1.0, single-maintainer, experimental.',
+  'No external users on real codebases yet. The next milestone is real world exposure.',
+  'Documentation is a work in progress. The next milestone is a comprehensive guide.',
+  'The wizard needs more polish. The next milestone is a more user-friendly experience.',
+];
 ---
-<aside class="honesty">
-  <div class="inner">
-    <p>Structor is experimental, pre-1.0, and maintained by one person. It's a real, working, tested tool — not a concept — but it hasn't met its users yet. Kick the tires and tell me what breaks.</p>
+<section class="honesty">
+  <div class="container">
+    <div class="panel" data-reveal>
+      <p class="eyebrow">The honest gaps</p>
+      <ul>
+        {gaps.map((g) => (
+          <li>
+            <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="var(--warn)" stroke-width="1.5" aria-hidden="true">
+              <circle cx="8" cy="8" r="6.5"/><path d="M8 4.8v3.6M8 11.1h.01"/>
+            </svg>
+            <span>{g}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="kick">Kick the tires and tell me what breaks.</p>
+    </div>
   </div>
-</aside>
+</section>
 
 <style>
   .honesty {
-    border-top: 1px solid var(--border);
-    padding: 2rem 1.5rem;
+    padding: 0 0 5rem;
   }
-
-  .inner {
-    max-width: 760px;
-    margin: 0 auto;
+  .panel {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--warn);
+    border-radius: 10px;
+    background: var(--bg-elev);
+    padding: 2rem 2.25rem;
   }
+  .eyebrow { color: var(--warn); margin-bottom: 1rem; }
+  .eyebrow::before { background: rgba(227, 179, 65, 0.4); }
 
-  p {
-    font-size: 0.875rem;
+  .intro {
+    font-size: 1rem;
     line-height: 1.65;
+    color: var(--text);
+    max-width: 64ch;
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
     color: var(--text-muted);
-    margin: 0;
-    max-width: 68ch;
+  }
+  li svg { flex-shrink: 0; transform: translateY(2px); }
+
+  .kick {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-strong);
+  }
+
+  @media (max-width: 560px) {
+    .panel { padding: 1.5rem 1.35rem; }
   }
 </style>

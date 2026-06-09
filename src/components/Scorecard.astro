@@ -1,0 +1,133 @@
+---
+const rows = [
+  { dim: 'Engineering rigor & safety model', score: 9.5 },
+  { dim: 'Test discipline', score: 9.0 },
+  { dim: 'Architectural coherence', score: 8.5 },
+  { dim: 'Docs & legibility', score: 7.5 },
+  { dim: 'Proven in the wild', score: 5.5 },
+];
+const overall = 8.2;
+---
+<section class="scorecard" id="scorecard">
+  <div class="container inner">
+    <div class="copy" data-reveal>
+      <p class="eyebrow">Engineering scorecard</p>
+      <h2>Honest about where it's strong — and where it isn't.</h2>
+      <p class="lede">
+        An independent read on the codebase in its experimental OSS context. The safety
+        model and test discipline are the strongest dimensions; being proven in the wild
+        is the one that's still pending.
+      </p>
+      <div class="overall">
+        <span class="overall-num">{overall.toFixed(1)}</span>
+        <span class="overall-den">/ 10</span>
+        <span class="overall-label">Overall</span>
+      </div>
+    </div>
+
+    <div class="bars" data-reveal>
+      {rows.map((r) => (
+        <div class="row" style={`--pct:${r.score * 10}%`}>
+          <div class="row-head">
+            <span class="dim">{r.dim}</span>
+            <span class="num">{r.score.toFixed(1)}</span>
+          </div>
+          <div class="track"><span class="fill"></span></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .scorecard {
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .eyebrow { margin-bottom: 1.1rem; }
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2.05rem);
+    font-weight: 740;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+    margin-bottom: 1rem;
+    max-width: 18ch;
+  }
+  .lede {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 46ch;
+    margin-bottom: 1.75rem;
+  }
+
+  .overall {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid var(--accent-line);
+    background: var(--accent-soft);
+    border-radius: 10px;
+  }
+  .overall-num {
+    font-size: 2rem;
+    font-weight: 780;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent-bright);
+  }
+  .overall-den { font-size: 1rem; color: var(--text-muted); }
+  .overall-label {
+    margin-left: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .bars { display: flex; flex-direction: column; gap: 1.4rem; }
+  .row-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .dim { font-size: 0.9375rem; color: var(--text); }
+  .num {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-strong);
+  }
+  .track {
+    height: 8px;
+    border-radius: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .fill {
+    display: block;
+    height: 100%;
+    width: var(--pct);
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal].is-visible .fill { transform: scaleX(1); }
+
+  @media (max-width: 920px) {
+    .inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>

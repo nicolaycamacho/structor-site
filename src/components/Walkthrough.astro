@@ -1,87 +1,160 @@
 ---
+const items = [
+  { code: '<repo>-structor/', text: 'A dedicated harness repo generated beside your code. It owns policy and validation, never product behavior.' },
+  { code: 'ai/HUB.md', text: 'A routing hub so an agent started in any repo can discover the whole product.' },
+  { code: 'ai/contracts/*', text: 'Versioned cross-repo contracts for products that span multiple repositories.' },
+  { code: 'ai/model-overlays/*', text: 'Thin Codex and Claude Code overlays that route back to one canonical policy.' },
+  { code: 'scripts/*.mjs', text: 'Drift-failing validators — governance, overlay-drift, contract-manifest, workspace.' },
+  { code: 'AGENTS.md · CLAUDE.md', text: 'Thin pointer files bootstrapped into the workspace and each consumer repo. Your code stays untouched.' },
+];
 ---
-<section class="walkthrough">
-  <div class="inner">
-    <h2>What gets generated</h2>
-    <p class="intro">Running <code>structor init</code> writes a harness into your repository. It contains:</p>
-    <ul>
-      <li>Canonical policy files (<code>ai/*</code>) that define how agents should interact with this repo</li>
-      <li>Thin Codex and Claude Code entrypoints with context scoped to the repo</li>
-      <li>Cross-repo contract files for products that span multiple repositories</li>
-      <li>Task templates with consistent shape and expected outputs</li>
-      <li>A routing hub (<code>ai/HUB.md</code>) that lets an agent started in any repo discover the whole product</li>
-      <li>Read-only review views for auditing agent interactions</li>
-      <li>Validation scripts that exit non-zero on drift</li>
-    </ul>
-    <p class="outro">The result is plain files in your repo with a stable shape and a way to detect drift.</p>
+<section class="walkthrough" id="generated">
+  <div class="container inner">
+    <div class="copy" data-reveal>
+      <p class="eyebrow">What it generates</p>
+      <h2>Not files in your repo — a harness repo beside it.</h2>
+      <p class="lede">
+        <code>structor init</code> doesn't touch your code. It generates a dedicated harness
+        repo next to your repos in the workspace, then bootstraps each one with a thin pointer
+        into it. One enforceable policy layer, shared by every repo — all plain files you can
+        read, diff, and review in a normal PR.
+      </p>
+      <ul class="list">
+        {items.map((it) => (
+          <li>
+            <code>{it.code}</code>
+            <span>{it.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="tree-panel" data-reveal aria-hidden="true">
+      <div class="tree-bar">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="var(--text-faint)" stroke-width="1.4"><path d="M1.5 4.5 1.5 13a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H8L6.5 2.5h-4a1 1 0 0 0-1 1z"/></svg>
+        <span>my-workspace/</span>
+      </div>
+      <pre class="tree"><code><span class="dir">app-frontend/</span>        <span class="cmt"># your repo — untouched</span>
+│  └─ <span class="file">AGENTS.md</span>       <span class="cmt"># thin pointer → harness</span>
+<span class="dir">app-backend/</span>         <span class="cmt"># another consumer repo</span>
+│  └─ <span class="file">CLAUDE.md</span>
+<span class="dir">app-structor/</span>        <span class="cmt"># the generated harness repo</span>
+├─ <span class="dir">ai/</span>
+│  ├─ <span class="file">HUB.md</span> <span class="cmt"># routing hub</span>
+│  ├─ <span class="file">context.md</span>
+│  ├─ <span class="dir">contracts/</span>
+│  ├─ <span class="dir">tasks/</span>
+│  ├─ <span class="dir">model-overlays/</span>
+│  └─ <span class="file">knowledge-manifest.json</span>
+├─ <span class="dir">scripts/</span>
+│  ├─ <span class="file ok">validate-governance.mjs</span>
+│  ├─ <span class="file ok">check-overlay-drift.mjs</span>
+│  └─ <span class="file ok">check-workspace.mjs</span>
+└─ <span class="file">harness.config.json</span></code></pre>
+    </div>
   </div>
 </section>
 
 <style>
   .walkthrough {
-    background: var(--surface-alt);
+    padding: 5rem 0;
     border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 1.5rem;
+    background: var(--bg-elev);
   }
 
   .inner {
-    max-width: 760px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: 3.5rem;
+    align-items: start;
   }
+
+  .eyebrow { margin-bottom: 1.1rem; }
 
   h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--text-strong);
+    font-size: clamp(1.5rem, 3vw, 2.05rem);
+    font-weight: 740;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
+    max-width: 18ch;
   }
 
-  .intro {
-    font-size: 0.9375rem;
+  .lede {
+    font-size: 1rem;
     line-height: 1.65;
-    color: var(--text-body);
-    margin-bottom: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.75rem;
+    max-width: 48ch;
+  }
+  .lede code, .list code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--accent-bright);
+    background: var(--accent-soft);
+    padding: 0.08em 0.4em;
+    border-radius: 4px;
   }
 
-  ul {
+  .list {
     list-style: none;
     padding: 0;
-    margin: 0 0 1.25rem;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.95rem;
+  }
+  .list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--border-strong);
+  }
+  .list li code { align-self: flex-start; }
+  .list li span {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  /* File tree panel */
+  .tree-panel {
+    position: sticky;
+    top: 84px;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    background: linear-gradient(180deg, #0d1017, #0a0c11);
+    box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+  }
+  .tree-bar {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.015);
   }
-
-  li {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-body);
-    padding-left: 1.25rem;
-    position: relative;
-  }
-
-  li::before {
-    content: "–";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  code {
-    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-    font-size: 0.875em;
-    background: var(--code-bg);
-    color: var(--text-strong);
-    padding: 0.1em 0.35em;
-    border-radius: 3px;
-  }
-
-  .outro {
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: var(--text-body);
+  .tree {
     margin: 0;
+    padding: 1.2rem 1.3rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.85;
+    color: var(--text-faint);
+    overflow-x: auto;
+  }
+  .tree .dir { color: var(--accent-bright); }
+  .tree .file { color: var(--text); }
+  .tree .file.ok { color: var(--pass); }
+  .tree .cmt { color: var(--text-faint); }
+
+  @media (max-width: 920px) {
+    .inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .tree-panel { position: static; }
   }
 </style>

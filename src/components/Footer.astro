@@ -1,12 +1,24 @@
 ---
 ---
 <footer class="footer">
-  <div class="inner">
+  <div class="container inner">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" width="22" height="22" aria-hidden="true">
+        <g fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="13" y="14" width="38" height="12" rx="3"/>
+          <rect x="13" y="38" width="38" height="12" rx="3"/>
+        </g>
+        <path d="M26 32 l4 4 l8-8" fill="none" stroke="var(--pass)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Structor</span>
+    </div>
+
     <nav class="links" aria-label="Footer links">
       <a href="https://github.com/nicolaycamacho/structor" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.npmjs.com/package/@structor-dev/cli" target="_blank" rel="noopener noreferrer">npm</a>
       <a href="https://github.com/nicolaycamacho/structor/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
     </nav>
+
     <p class="attribution">Built by Nicolay Camacho.</p>
   </div>
 </footer>
@@ -14,39 +26,40 @@
 <style>
   .footer {
     border-top: 1px solid var(--border);
-    padding: 2rem 1.5rem;
+    padding: 2.25rem 0;
+    background: var(--bg-elev);
   }
-
   .inner {
-    max-width: 760px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
   }
-
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--text-strong);
+  }
   .links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.75rem;
     flex-wrap: wrap;
   }
-
   .links a {
     font-size: 0.875rem;
     color: var(--text-muted);
-    text-decoration: none;
     transition: color 0.15s ease;
   }
-
-  .links a:hover {
-    color: var(--accent);
+  .links a:hover { color: var(--accent-bright); }
+  .attribution {
+    font-size: 0.82rem;
+    color: var(--text-faint);
   }
 
-  .attribution {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    margin: 0;
+  @media (max-width: 640px) {
+    .inner { flex-direction: column; align-items: flex-start; }
   }
 </style>

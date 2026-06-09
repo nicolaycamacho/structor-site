@@ -1,94 +1,28 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Wedge from '../components/Wedge.astro';
-import DemoSlot from '../components/DemoSlot.astro';
 import Walkthrough from '../components/Walkthrough.astro';
+import DemoSlot from '../components/DemoSlot.astro';
+import Proof from '../components/Proof.astro';
+import Scorecard from '../components/Scorecard.astro';
 import Install from '../components/Install.astro';
 import Honesty from '../components/Honesty.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Structor generates repository-local AI engineering harnesses with versioned, enforceable policy and drift-failing validators." />
-    <title>Structor — Enforcement for your AI coding agents</title>
-
-    <style is:global>
-      :root {
-        --accent: #1d4ed8;
-        --accent-subtle: #eff6ff;
-        --text-strong: #0f172a;
-        --text-body: #334155;
-        --text-muted: #64748b;
-        --surface-alt: #f8fafc;
-        --border: #e2e8f0;
-        --border-strong: #94a3b8;
-        --code-bg: #f1f5f9;
-        --code-surface: #f8fafc;
-      }
-
-      *, *::before, *::after {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-        background: #fff;
-        color: var(--text-body);
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.5;
-        min-width: 360px;
-      }
-
-      h1, h2, h3 {
-        margin: 0;
-      }
-
-      p {
-        margin: 0;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --accent: #60a5fa;
-          --accent-subtle: #1e3a5f;
-          --text-strong: #f1f5f9;
-          --text-body: #cbd5e1;
-          --text-muted: #94a3b8;
-          --surface-alt: #0f172a;
-          --border: #1e293b;
-          --border-strong: #475569;
-          --code-bg: #1e293b;
-          --code-surface: #0f172a;
-        }
-
-        body {
-          background: #020617;
-        }
-      }
-    </style>
-  </head>
-  <body>
+<Layout>
+  <Nav />
+  <main>
     <Hero />
     <Wedge />
-    <DemoSlot />
     <Walkthrough />
+    <DemoSlot />
+    <Proof />
+    <!-- <Scorecard /> -->
     <Install />
     <Honesty />
-    <Footer />
-  </body>
-</html>
+  </main>
+  <Footer />
+</Layout>

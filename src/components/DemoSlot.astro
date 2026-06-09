@@ -1,15 +1,25 @@
 ---
 ---
 <section class="demo-section" id="demo">
-  <div class="inner">
-    <h2>See it on a real multi-repo project</h2>
-    <p class="demo-desc">Watch Structor generate a harness across separate frontend and backend repos, then watch an agent started in one repo discover the whole product through the harness.</p>
-    <div class="demo-frame">
+  <div class="container">
+    <div class="head" data-reveal>
+      <p class="eyebrow">See it run</p>
+      <h2>One product, two repos, one harness.</h2>
+      <p class="demo-desc">
+        Watch Structor generate a harness across separate frontend and backend repos —
+        then watch an agent started in one repo discover the whole product through the hub.
+      </p>
+    </div>
+
+    <div class="demo-frame" data-reveal>
       <!-- LOOM EMBED: replace the .demo-placeholder div below with your Loom
-      <iframe>. Keep it inside .demo-frame so the 16:9 ratio is preserved. -->
+      <iframe> (full width/height). Keep it inside .demo-frame so the 16:9 ratio holds. -->
       <div class="demo-placeholder">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
         <span class="placeholder-main">Demo video coming soon</span>
-        <span class="placeholder-sub">(Loom embed goes here)</span>
+        <span class="placeholder-sub">Loom embed goes here</span>
       </div>
     </div>
   </div>
@@ -17,36 +27,37 @@
 
 <style>
   .demo-section {
-    padding: 4rem 1.5rem;
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
   }
 
-  .inner {
-    max-width: 860px;
-    margin: 0 auto;
-  }
+  .head { max-width: 640px; margin-bottom: 2.25rem; }
+  .eyebrow { margin-bottom: 1.1rem; }
 
   h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--text-strong);
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.5rem, 3vw, 2.05rem);
+    font-weight: 740;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.85rem;
   }
-
   .demo-desc {
-    font-size: 0.9375rem;
+    font-size: 1.0625rem;
     line-height: 1.65;
-    color: var(--text-body);
-    margin-bottom: 1.75rem;
-    max-width: 62ch;
+    color: var(--text-muted);
+    max-width: 58ch;
   }
 
   .demo-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 6px;
+    border-radius: 12px;
     overflow: hidden;
-    background: var(--surface-alt);
+    border: 1px solid var(--border-strong);
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(109, 140, 255, 0.08), transparent 70%),
+      linear-gradient(180deg, #0d1017, #0a0c11);
+    box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.8);
   }
 
   .demo-placeholder {
@@ -56,21 +67,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    border: 2px dashed var(--border-strong);
-    border-radius: 6px;
-    box-sizing: border-box;
+    gap: 0.65rem;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
-
+  .play {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    color: var(--accent-bright);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    margin-bottom: 0.35rem;
+  }
   .placeholder-main {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--text);
   }
-
   .placeholder-sub {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    opacity: 0.7;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
   }
 </style>

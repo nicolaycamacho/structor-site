@@ -1,0 +1,79 @@
+---
+const proofs = [
+  {
+    stat: 'npm',
+    label: 'Published',
+    body: '@structor-dev/cli ships on npm, MIT-licensed, Node 20+.',
+  },
+  {
+    stat: '3',
+    label: 'Commands',
+    body: 'init, generate, and doctor — all implemented and tested.',
+  },
+  {
+    stat: '3×',
+    label: 'Smoke suite',
+    body: 'Generates disposable harnesses for OpenAI-only, Anthropic-only, and combined setups, then bootstraps and validates each.',
+  },
+  {
+    stat: '⚔',
+    label: 'Adversarial tests',
+    body: 'Exploit-shaped regression tests for symlinks, traversal, and template injection.',
+  },
+];
+---
+<section class="proof">
+  <div class="container">
+    <p class="eyebrow" data-reveal>What's working</p>
+    <div class="grid">
+      {proofs.map((p) => (
+        <div class="item" data-reveal>
+          <div class="stat">{p.stat}</div>
+          <div class="label">{p.label}</div>
+          <p>{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+  .eyebrow { margin-bottom: 2rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.5rem 2rem;
+  }
+  .item {
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--border-strong);
+  }
+  .stat {
+    font-size: 1.75rem;
+    font-weight: 760;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent-bright);
+    font-feature-settings: "tnum";
+  }
+  .label {
+    margin-top: 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .item p {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+</style>

@@ -1,15 +1,28 @@
 # structor-site
 
-Marketing site for [Structor](https://github.com/nicolaycamacho/structor) — a single landing page built with Astro.
+Landing page for [Structor](https://github.com/nicolaycamacho/structor) — a local CLI that
+generates a repository-local AI engineering harness with versioned, enforceable policy and
+drift-failing validators.
 
-## Running locally
+Built with [Astro](https://astro.build).
 
-```sh
-npm install
-npm run dev     # dev server at localhost:4321
-npm run build   # production build to ./dist
-```
+## Commands
 
-## Demo video slot
+All commands are run from the root of the project, from a terminal. Requires Node `>=22.12.0`.
 
-`src/components/DemoSlot.astro` contains an intentionally empty placeholder for the Loom demo video. The insertion point is marked with an HTML comment inside that file — replace the `.demo-placeholder` div with your Loom `<iframe>` when ready.
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run build`   | Build the production site to `./dist/`       |
+| `npm run preview` | Preview the build locally, before deploying  |
+
+## Structure
+
+- `src/layouts/Layout.astro` — global design tokens, fonts, and the page shell.
+- `src/components/*.astro` — one component per section (Nav, Hero, Wedge, Walkthrough,
+  DemoSlot, Proof, Scorecard, Install, Honesty, Footer).
+- `src/pages/index.astro` — composes the sections into the page.
+
+To drop in the demo video, replace the `.demo-placeholder` block in
+`src/components/DemoSlot.astro` with your Loom `<iframe>`.

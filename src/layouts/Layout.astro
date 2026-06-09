@@ -1,0 +1,175 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Structor — Enforcement for your AI coding agents',
+  description = 'Structor is a local CLI that generates a repository-local AI engineering harness — versioned, enforceable policy with validators that fail your build when the rules drift.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Surfaces — dark, technical, blueprint-leaning */
+    --bg: #0a0c11;
+    --bg-elev: #0f1219;
+    --surface: #141823;
+    --surface-2: #1a1f2c;
+
+    /* Borders */
+    --border: #20242f;
+    --border-strong: #2e3442;
+
+    /* Text */
+    --text-strong: #f4f6fa;
+    --text: #c4cbd6;
+    --text-muted: #828c9c;
+    --text-faint: #5b6473;
+
+    /* Brand + signal */
+    --accent: #6d8cff;
+    --accent-bright: #8aa2ff;
+    --accent-soft: rgba(109, 140, 255, 0.12);
+    --accent-line: rgba(109, 140, 255, 0.35);
+    --pass: #46d369;
+    --pass-soft: rgba(70, 211, 105, 0.12);
+    --fail: #ff6b63;
+    --fail-soft: rgba(255, 107, 99, 0.12);
+    --warn: #e3b341;
+
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+
+    --maxw: 1080px;
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    min-width: 320px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle structural grid + glow that sits behind everything */
+  .page-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 25%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 25%, transparent 80%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1100px;
+    height: 700px;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(109, 140, 255, 0.16), transparent 70%);
+    filter: blur(20px);
+  }
+
+  body > *:not(.page-grid) { position: relative; z-index: 1; }
+
+  h1, h2, h3, h4 { margin: 0; color: var(--text-strong); }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--accent-soft); color: var(--text-strong); }
+
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Section eyebrow used across sections */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: var(--accent-line);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.12 },
+  );
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+</script>

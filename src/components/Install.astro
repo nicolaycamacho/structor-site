@@ -1,92 +1,129 @@
 ---
 ---
 <section class="install">
-  <div class="inner">
-    <h2>Try it</h2>
-    <div class="code-block">
-      <pre><code>npx @structor-dev/cli init</code></pre>
-      <button class="copy-btn" aria-label="Copy command" data-cmd="npx @structor-dev/cli init">Copy</button>
+  <div class="container">
+    <div class="panel" data-reveal>
+      <div class="panel-glow" aria-hidden="true"></div>
+      <p class="eyebrow">Try it</p>
+      <h2>One command. No account, no daemon, no telemetry.</h2>
+      <div class="code-block">
+        <span class="cprompt" aria-hidden="true">$</span>
+        <pre><code>npx @structor-dev/cli init</code></pre>
+        <button class="copy-btn" aria-label="Copy command" data-cmd="npx @structor-dev/cli init">
+          <span class="copy-label">Copy</span>
+        </button>
+      </div>
+      <p class="note">Important: Run it from the workspace folder that contains your repos.</p>
     </div>
-    <p class="note">Run it from the workspace folder that contains your repos.</p>
   </div>
 </section>
 
 <script>
   const btn = document.querySelector<HTMLButtonElement>('.copy-btn');
+  const label = btn?.querySelector<HTMLSpanElement>('.copy-label');
   btn?.addEventListener('click', () => {
     const cmd = btn.dataset.cmd ?? '';
     navigator.clipboard.writeText(cmd).then(() => {
-      btn.textContent = 'Copied!';
-      setTimeout(() => { btn.textContent = 'Copy'; }, 1800);
+      if (!label) return;
+      label.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        label.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 1800);
     });
   });
 </script>
 
 <style>
   .install {
-    padding: 4rem 1.5rem;
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
   }
 
-  .inner {
-    max-width: 760px;
-    margin: 0 auto;
+  .panel {
+    position: relative;
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--surface), var(--bg-elev));
+    overflow: hidden;
   }
+  .panel-glow {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(109, 140, 255, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .panel > *:not(.panel-glow) { position: relative; }
+
+  .eyebrow { margin-bottom: 1rem; }
+  .eyebrow::before { display: none; }
 
   h2 {
-    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--text-strong);
-    margin-bottom: 1.25rem;
+    font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+    font-weight: 740;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.75rem;
+    max-width: 24ch;
+    margin-inline: auto;
   }
 
   .code-block {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0;
-    background: var(--code-surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    gap: 0.65rem;
+    background: #0a0c11;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 0 0 0 1.1rem;
     overflow: hidden;
-    max-width: 480px;
+    max-width: 100%;
   }
-
+  .cprompt {
+    font-family: var(--mono);
+    color: var(--accent-bright);
+    font-size: 0.95rem;
+  }
   pre {
     margin: 0;
-    padding: 0.9rem 1.1rem;
-    flex: 1;
+    padding: 0.95rem 0.5rem 0.95rem 0;
     overflow-x: auto;
   }
-
   pre code {
-    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-    font-size: 0.9375rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
     color: var(--text-strong);
-    background: none;
-    padding: 0;
   }
-
   .copy-btn {
     flex-shrink: 0;
-    padding: 0.9rem 1rem;
-    background: transparent;
+    align-self: stretch;
+    padding: 0 1.15rem;
+    background: var(--surface-2);
     border: none;
-    border-left: 1px solid var(--border);
-    font-size: 0.8125rem;
+    border-left: 1px solid var(--border-strong);
+    font-size: 0.82rem;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--text);
     cursor: pointer;
-    transition: background 0.15s ease;
-    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+    font-family: var(--sans);
   }
-
-  .copy-btn:hover {
-    background: var(--accent-subtle);
-  }
+  .copy-btn:hover { background: var(--accent-soft); color: var(--accent-bright); }
+  .copy-btn.copied { color: var(--pass); }
 
   .note {
+    margin-top: 1.25rem;
     font-size: 0.875rem;
     color: var(--text-muted);
-    margin-top: 0.875rem;
+  }
+
+  @media (max-width: 560px) {
+    .panel { padding: 2.25rem 1.25rem; }
   }
 </style>
